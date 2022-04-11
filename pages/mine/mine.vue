@@ -1,28 +1,50 @@
 <template>
-	<view>
-		<button id="button" style="margin-bottom: 40rpx; " type="primary" lang="zh_CN"
-			@tap="GetUserInfo()">登陆</button>
-		<image :src="avatarUrl"></image>
-		<view>{{nickName}}</view>
-		<button>注销</button>
+	<view class="userinfo" @tap="GetUserInfo()">
+		<image :src="avatarUrl" class="userinfo-avatar"></image>
+		<!-- <button v-show="!flag" style="margin-bottom: 40rpx; " type="primary" lang="zh_CN">登录</button> -->
+		<view class="userinfo-nickname" >{{nickName}}</view>
 	</view>
+	
+	<uni-card title="基础卡片" sub-title="副标题" extra="额外信息" thumbnail="https://vkceyugu.cdn.bspapp.com/VKCEYUGU-dc-site/460d46d0-4fcc-11eb-8ff1-d5dcf8779628.png">
+		<text>这是一个带头像和双标题的基础卡片，此示例展示了一个完整的卡片。</text>
+	</uni-card>
 </template>
 
 <script>
 	export default {
 		data() {
 			return {
-				nickName:"",
-				avatarUrl:""
+				flag:false,
+				nickName:"登录",
+				avatarUrl:"../../static/icos/camera.png",
+				openId:""
 			}
 		},
 		onLoad() {
 			
 		},
 		methods: {
-			GetUserInfo() {
+			CheckSession(){
 				var _this = this;
-				
+				wx.checkSession({
+				  success() {
+					console.log('session_key 未过期');
+					_this.flag = true;
+					_this.login();
+				    // session_key 未过期，并且在本生命周期一直有效
+				  },
+				  fail() {
+					console.log('session_key 已经失效');
+				    // session_key 已经失效，需要重新执行登录流程
+				    _this.flag = false;
+					_this.GetUserInfo();
+					
+				  }
+				})
+			},
+			GetUserInfo() {
+				console.log('获取用户信息');
+				var _this = this;
 				uni.getUserProfile({
 					desc: '登录',
 					lang: 'zh_CN',
@@ -39,13 +61,8 @@
 						// 			url: 'Login2'
 						// 		});
 						// 	}
-						// });
-						_this.button.style.display = "none";
-						uni.switchTab({
-						    // 登录成功后的跳转
-							url: '../index/index'
-						});
-						
+						// });						
+					
 					},
 					fail: (res) => {
 						console.log('用户拒绝了授权');
@@ -103,25 +120,39 @@
 					success: function(res) {
 						if (res.code) {
 							let code = res.code;
-							console.log('用户code:', res.code);
+							console.log('用户code: ', res.code);
 							uni.request({
-								url: _this.serverUrl + `getOpenid`,
+								url: _this.serverUrl + `authorize/getOpenid`,
 								method: 'POST',
 								header: {
-									'Content-Type': 'application/x-www-form-urlencoded'
+									'Content-Type': 'application/json'
 								},
 								data: {
 									code: res.code, //wx.login 登录成功后的code 
-									// role: _this.role,
 								},
 								success: function(res1) {
-									var openid = res1.data.data.openid; //openid 用户唯一标识
-									var userInfo = {
-										openid: openid,
-										 // role: _this.role
-									};
-									console.log(res1.data.data.openid);
-									// _this.saveUserInfo(userInfo);
+									//openid 用户唯一标识
+									_this.openId = res1.data.data.openid; 
+									console.log("openId: " + _this.openId);
+									
+									// 保存用户信息
+									uni.request({
+										url: _this.serverUrl + `authorize/setUserProfile`,
+										method: 'POST',
+										header: {
+											'Content-Type': 'application/json'
+										},
+										
+										data: {
+											"nickName": _this.nickName, 
+											"avatarUrl": _this.avatarUrl,
+											"openId": _this.openId 
+										},
+										success: function(res1) {
+											console.log('获取用户信息成功');
+										}
+									});
+															
 									uni.hideLoading();
 									// uni.switchTab({
 			      //                       // 登录成功后的跳转
@@ -138,10 +169,8 @@
 						}
 					},
 				});
-			},
-			setNn(nickName){
-				this.nickName = nickName;
 			}
+			
 		}
 		
 	}
@@ -174,5 +203,34 @@
 </script>
 
 <style>
+.userinfo {
+  margin-top: 40rpx;
+  height: 140rpx;
+  width: 100%;
+  background: #aaffff;
+  border: 1px solid rgba(0, 0, 0, 0.1);
+  border-left: none;
+  border-right: none;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  transition: all 300ms ease;
+}
+
+.userinfo-avatar {
+  width: 100rpx;
+  height: 100rpx;
+  margin: 20rpx;
+  border-radius: 50%;
+  background-size: cover;
+  background-color: white;
+}
+
+.userinfo-nickname {
+  font-size: 32rpx;
+  color: #007aff;
+  /* background-size: cover; */
+  text-align: center;
+}
 
 </style>

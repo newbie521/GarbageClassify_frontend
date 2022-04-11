@@ -1,18 +1,15 @@
 import Vue from 'vue'
-import App from './App'
-
+import App from './App.vue'
+ 
 Vue.config.productionTip = false
 
-// prod 
-// Vue.prototype.serverUrl="https://felix.picp.vip/wx"
-// dev
 Vue.prototype.serverUrl="http://wx.azuresky.top/wx/"
 Vue.prototype.imageUrl="http://azuresky.top:9010/images/static/"
- // Vue.prototype.serverUrl="http://localhost:8899/wx"
-
 App.mpType = 'app'
 
 const app = new Vue({
+	// el: '#app',
+	// render: h => h(App)
     ...App
 })
 app.$mount()

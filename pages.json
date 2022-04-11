@@ -102,4 +102,5 @@
 		]
 	},
 	"lazyCodeLoading":"requiredComponents"
+	// "dev:mp-weixin": "cross-env NODE_ENV=development UNI_PLATFORM=mp-weixin vue-cli-service uni-build --watch --minimize"
 }

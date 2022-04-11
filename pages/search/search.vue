@@ -34,9 +34,9 @@
 						<image src="/static/HM-search/back.png"></image>
 					</view>
 				</view>
-				<view>
+<!-- 				<view>
 					<ad unit-id="adunit-060249bea9401e5c"></ad>
-				</view>
+				</view> -->
 			</scroll-view>
 			<scroll-view class="keyword-box" v-show="!isShowKeywordList" scroll-y>
 				<view class="keyword-block" v-if="oldKeywordList.length>0">

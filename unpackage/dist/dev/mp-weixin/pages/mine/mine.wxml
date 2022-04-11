@@ -1,1 +1,1 @@
-<view><button style="margin-bottom:40rpx;" id="button" type="primary" lang="zh_CN" data-event-opts="{{[['tap',[['GetUserInfo']]]]}}" bindtap="__e">登陆</button><image src="{{avatarUrl}}"></image><view>{{nickName}}</view><button>注销</button></view>
+<view data-event-opts="{{[['tap',[['GetUserInfo']]]]}}" class="userinfo" bindtap="__e"><image class="userinfo-avatar" src="{{avatarUrl}}"></image><view class="userinfo-nickname">{{nickName}}</view></view>
