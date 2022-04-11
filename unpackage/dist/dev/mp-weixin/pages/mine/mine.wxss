@@ -1,4 +1,7 @@
 
+page{
+	background-color: #defbff;
+}
 .userinfo {
   margin-top: 40rpx;
   height: 140rpx;

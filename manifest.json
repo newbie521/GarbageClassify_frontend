@@ -58,12 +58,13 @@
         "appid" : "wx5396e139a8774055",
         "setting" : {
             "urlCheck" : false,
-            "es6" : false
+            "es6" : false,
+            "minified" : true
         },
         "usingComponents" : true,
         "permission" : {
             "scope.userLocation" : {
-                "desc" : ""
+                "desc" : "好的"
             }
         }
     },

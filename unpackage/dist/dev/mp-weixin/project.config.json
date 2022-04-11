@@ -7,12 +7,10 @@
   "setting": {
     "urlCheck": false,
     "es6": false,
+    "minified": true,
     "coverView": true,
     "postcss": true,
-    "compileHotReLoad": true,
-    "lazyloadPlaceholderEnable": false,
     "preloadBackgroundData": false,
-    "minified": true,
     "autoAudits": false,
     "uglifyFileName": false,
     "uploadWithSourceMap": true,
@@ -31,7 +29,8 @@
       "outputPath": ""
     },
     "disableUseStrict": false,
-    "useCompilerPlugins": false
+    "useCompilerPlugins": false,
+    "minifyWXML": true
   },
   "compileType": "miniprogram",
   "libVersion": "2.23.2",

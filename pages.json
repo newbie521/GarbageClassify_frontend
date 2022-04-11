@@ -18,7 +18,6 @@
 				"navigationBarTitleText":"环保守卫者挑战赛"
 			}
 		},
-		
 		{
 			"path": "pages/more/more",
 			"style": {}
@@ -43,10 +42,37 @@
                 "enablePullDownRefresh": false
             }   
         }
+        ,{
+            "path" : "pages/mine/about/about",
+            "style" :                                                                                    
+            {
+                "navigationBarTitleText": "",
+                "enablePullDownRefresh": false
+            }
+            
+        }
+        ,{
+            "path" : "pages/mine/challengeList/challengeList",
+            "style" :                                                                                    
+            {
+                "navigationBarTitleText": "",
+                "enablePullDownRefresh": false
+            }
+            
+        }
+        ,{
+            "path" : "pages/mine/photoList/photoList",
+            "style" :                                                                                    
+            {
+                "navigationBarTitleText": "",
+                "enablePullDownRefresh": false
+            }
+            
+        }
     ],
 	"globalStyle": {
 		"navigationBarTextStyle": "black",
-		"navigationBarTitleText": "伟涵识别助手",
+		"navigationBarTitleText": "垃圾智能识别",
 		"navigationBarBackgroundColor": "#F8F8F8",
 		"backgroundColor": "#fff"
 	},

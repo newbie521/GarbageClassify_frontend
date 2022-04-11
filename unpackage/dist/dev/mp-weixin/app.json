@@ -7,12 +7,15 @@
     "pages/more/more",
     "pages/type/type",
     "pages/webview/webview",
-    "pages/mine/mine"
+    "pages/mine/mine",
+    "pages/mine/about/about",
+    "pages/mine/challengeList/challengeList",
+    "pages/mine/photoList/photoList"
   ],
   "subPackages": [],
   "window": {
     "navigationBarTextStyle": "black",
-    "navigationBarTitleText": "伟涵识别助手",
+    "navigationBarTitleText": "垃圾智能识别",
     "navigationBarBackgroundColor": "#F8F8F8",
     "backgroundColor": "#fff"
   },
@@ -49,8 +52,9 @@
   },
   "permission": {
     "scope.userLocation": {
-      "desc": ""
+      "desc": "好的"
     }
   },
-  "usingComponents": {}
+  "usingComponents": {},
+  "lazyCodeLoading":"requiredComponents"
 }

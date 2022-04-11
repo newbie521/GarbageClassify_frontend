@@ -480,7 +480,7 @@
 							title: '正在努力识别中...'
 						});
 						me.imagePath = res.tempFilePaths[0];
-						console.log(me.imagePath)
+						console.log("sdsdsdsadsadsa: "+me.imagePath)
 						uni.uploadFile({
 							url: me.serverUrl + '/upload/image', //仅为示例，非真实的接口地址
 							filePath: res.tempFilePaths[0],
