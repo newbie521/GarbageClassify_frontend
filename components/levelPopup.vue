@@ -4,15 +4,15 @@
 		<view v-show="show" class="inner">
 			<view class="show-main">
 				<view class="title">
-					{{level==1?'破坏者':level==2?'青铜守卫':level==3?'黄金守卫':level==4?'钻石守卫':'最强王者'}}
+					{{level==1?'黑铁守卫':level==2?'青铜守卫':level==3?'黄金守卫':level==4?'钻石守卫':'最强王者'}}
 				</view>
 				<view class="level-image">
 					<view class="">
-						<image v-if="level==1" class="popup-image" src="../static/level/pohuaizhe.png" mode=""></image>
-						<image v-else-if="level==2" class="popup-image" src="../static/level/qingtong.png" mode=""></image>
-						<image v-else-if="level==3" class="popup-image" src="../static/level/huangjin.png" mode=""></image>
-						<image v-else-if="level==4" class="popup-image" src="../static/level/zuanshi.png" mode=""></image>
-						<image v-else-if="level==5" class="popup-image" src="../static/level/wangzhe.png" mode=""></image>
+						<image v-if="level==1" class="popup-image" :src="getImage('level/pohuaizhe.png')" mode=""></image>
+						<image v-else-if="level==2" class="popup-image" :src="getImage('level/qingtong.png')" mode=""></image>
+						<image v-else-if="level==3" class="popup-image" :src="getImage('level/huangjin.png')" mode=""></image>
+						<image v-else-if="level==4" class="popup-image" :src="getImage('level/zuanshi.png')" mode=""></image>
+						<image v-else-if="level==5" class="popup-image" :src="getImage('level/wangzhe.png')" mode=""></image>
 					</view>
 				</view>
 
@@ -43,10 +43,13 @@
 		},
 		data() {
 			return {
-
+				imgUrl:"",
 			};
 		},
 		methods: {
+			getImage(img){
+				return this.imageUrl + img;
+			},
 			hide() {
 				// 子组件向父组件传值
 				this.$emit('hidePopup');

@@ -25,13 +25,13 @@
 						<!-- <button class="inner-text inner-text-kefu" plain open-type="contact"> 意见反馈</button> -->
 					</view>
 					<view class="inner-text">
-						<image v-if="detail.garbageType==1" class="show-img" src="../../../static/classify/style-gan.jpg"></image>
-						<image v-else-if="detail.garbageType==2" class="show-img-shi" src="../../../static/classify/style-shi.jpg"></image>
-						<image v-else-if="detail.garbageType==3" class="show-img-huishou" src="../../../static/classify/style-huishou.jpg"></image>
-						<image v-else-if="detail.garbageType==4" class="show-img" src="../../../static/classify/style-youhai.jpg"></image>
-						<view>
+						<image v-if="detail.garbageType==1" class="show-img" :src="getImage('classify/style-gan.jpg')"></image>
+						<image v-else-if="detail.garbageType==2" class="show-img-shi" :src="getImage('classify/style-shi.jpg')"></image>
+						<image v-else-if="detail.garbageType==3" class="show-img-huishou" :src="getImage('classify/style-huishou.jpg')"></image>
+						<image v-else-if="detail.garbageType==4" class="show-img" :src="getImage('classify/style-youhai.jpg')"></image>
+<!-- 						<view>
 							<ad unit-id="adunit-060249bea9401e5c"></ad>
-						</view>
+						</view> -->
 					</view>
 				</view>
 
@@ -59,6 +59,10 @@
 		},
 
 		methods: {
+			getImage(img){
+				return this.imageUrl + img;
+			},
+			
 			hide() {
 				this.$emit('hideMypopup');
 			}

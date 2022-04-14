@@ -1,5 +1,5 @@
 <template>
-	<view>
+	<!-- <view> -->
 <!-- 		<view class="userinfo" @tap="GetUserInfo()">
 			<image :src="avatarUrl" class="userinfo-avatar"></image>
 			<view class="userinfo-nickname" >{{nickName}}</view>
@@ -14,6 +14,18 @@
 				</view>
 			</uni-card>
 			
+			<view style="margin-top: 10rpx; ">
+				<uni-list style="">
+					<uni-list-item @tap="NavigateTo(1)" :show-extra-icon="true" style="margin: 5upx; " showArrow :extra-icon="calendarfilled" title="关键词识别记录" />
+					<uni-list-item @tap="NavigateTo(2)" :show-extra-icon="true" style="margin: 5upx;" showArrow :extra-icon="scan" title="图片识别记录" />
+					<uni-list-item @tap="NavigateTo(3)" :show-extra-icon="true" style="margin: 5upx;" showArrow :extra-icon="medal" title="挑战赛记录" />
+					<uni-list-item @tap="NavigateTo(4)" :show-extra-icon="true" style="margin: 5upx;" showArrow :extra-icon="stafffilled" title="关于我们" />
+				</uni-list>
+			</view>
+		
+			
+			
+<!-- 			
 			<uni-card  @tap="NavigateTo(1)" title="挑战赛记录" extra=">" thumbnail="https://vkceyugu.cdn.bspapp.com/VKCEYUGU-dc-site/460d46d0-4fcc-11eb-8ff1-d5dcf8779628.png">
 			</uni-card>
 			
@@ -21,9 +33,7 @@
 			</uni-card>
 			
 			<uni-card  @tap="NavigateTo(3)" title="关于我们" extra=">" thumbnail="https://vkceyugu.cdn.bspapp.com/VKCEYUGU-dc-site/460d46d0-4fcc-11eb-8ff1-d5dcf8779628.png">
-			</uni-card>
-			
-		</view>
+			</uni-card> -->
 		
 		
 		
@@ -34,6 +44,26 @@
 	export default {
 		data() {
 			return {
+				calendarfilled: {
+					color: '#a2d9bd',
+					size: '30',
+					type:'calendar-filled'//icon名称
+				},
+				scan: {
+					color: '#a2d9bd',
+					size: '30',
+					type:'scan'//icon名称
+				},
+				medal: {
+					color: '#a2d9bd',
+					size: '30',
+					type:'medal'//icon名称
+				},
+				stafffilled: {
+					color: '#a2d9bd',
+					size: '30',
+					type:'staff-filled'//icon名称
+				},
 				flag:false,
 				nickName:"临时用户",
 				avatarUrl:"/static/icos/right-full.png",
@@ -44,7 +74,6 @@
 			this.openid = getApp().globalData.openid;
 			this.userid = getApp().globalData.userid;
 			this.flag = getApp().globalData.flag;
-			console.log("xxxxxxxxxxxx: "+ this.flag);
 			let _this = this;
 			if(this.flag){
 				uni.request({
@@ -70,10 +99,16 @@
 							// });
 						}
 				});
+			}else{
+				_this.GetUserInfo();
 			}
+			
 			
 		},
 		methods: {
+			getImage(img){
+				return this.imageUrl + img;
+			},
 			GetUserInfo() {
 				console.log('获取用户信息');
 				var _this = this;
@@ -132,11 +167,11 @@
 								success: function(res1) {
 									//openid 用户唯一标识
 									_this.openid = res1.data.data.openid; 
-									
+									_this.userid = res1.data.data.userid; 
 									
 									var userInfo = {
 										"openid": _this.openid,
-										"userid": 1
+										"userid": _this.userid 
 									};
 									console.log("openid: " + _this.openid);
 									
@@ -191,7 +226,12 @@
 					});			
 				}else if(tag ==3){
 					uni.navigateTo({
-						url: `./about/about`
+						url: `./challengeList/challengeList`,
+						
+					});			
+				}else if(tag ==4){
+					uni.navigateTo({
+						url: `./about/about1.vue`
 					});			
 				}
 				
@@ -205,37 +245,11 @@
 		}
 		
 	}
-			// //新版登录方法
-			// getUserProfile() {
-			// 	uni.getUserProfile({
-			// 		lang: 'zh_CN',
-			// 		desc: '用于获取您的个人信息',
-			// 		success: res => {
-			// 			console.log(res.userInfo);
-			// 			if (res.userInfo) {
-			// 				//在此发起网络请求
-			// 				//请求后端给的登录接口，把res.code等相关参数带上
-			// 				//登录请求后待端接口方法
-			// 				this.wxLoginCode(res.userInfo, '888')
-			
-			// 			} else {
-			// 				//失败做提示
-			// 			}
-			// 		},
-			// 		fail: err => {
-			// 			uni.showToast({
-			// 				title: '你已拒绝登录',
-			// 				icon: 'error',
-			// 				duration: 2000
-			// 			});
-			// 		}
-			// 	})
-			// },
 </script>
 
 <style>
 page{
-	background-color: #defbff;
+	background-color: #f2f2f2;
 }
 
 .userinfo {

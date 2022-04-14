@@ -230,7 +230,7 @@ view {
 	/* border: 1px solid red; */
 	border-radius: 20upx;
 }
-
+/*  */
 .input-view-camera {}
 
 .input-view-item {
@@ -241,7 +241,7 @@ view {
 
 .input-search {
 	height: 80upx;
-	width: 320upx;
+	width: 420upx;
 }
 
 .search-img {
@@ -251,7 +251,7 @@ view {
 
 .font-search {
 	/* border: 2px solid red; */
-	width: 80upx;
+	width: 60upx;
 	padding: 10upx;
 	color: #72c69c;
 	font-weight: bold;

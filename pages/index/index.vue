@@ -74,9 +74,9 @@
 					<view @click="takePhoto2" class="input-view-item input-view-camera">
 						<image class="search-img" :src="getImage('icos/camera.png')"></image>
 					</view>
-					<view @click="readyRecord2" class="input-view-item input-view-speech">
+<!-- 					<view @click="readyRecord2" class="input-view-item input-view-speech">
 						<image class="search-img" :src="getImage('icos/record.png')"></image>
-					</view>
+					</view> -->
 					<view class="input-view-item input-view-search">
 						<input confirm-type="search" @confirm="searchKeyword" @search="searchKeyword" v-model="keyword" id="inputid"
 						 class="input-search" name="input" placeholder="输入搜索关键词" />
@@ -87,7 +87,7 @@
 		</view>
 		<view v-show="true">
 			<view class="">
-				<uni-notice-bar show-icon="false" color="#999" backgroundColor="rgb(242,242,242)" text="提示:本查询系统就供参考,具体分类要求以属地专业管理部门为准">
+				<uni-notice-bar scrollable="true" show-icon="true" color="#999" backgroundColor="rgb(242,242,242)" text="提示:本查询系统就供参考,具体分类要求以属地专业管理部门为准">
 				</uni-notice-bar>
 			</view>
 		</view>
@@ -141,9 +141,9 @@
 </template>
 
 <script>
-	import uniNoticeBar from "../../components/uni-notice-bar/uni-notice-bar.vue"
-	import uniIcon from "../../components/uni-icon/uni-icon.vue"
-	import uniPopup from "@/components/uni-popup/uni-popup.vue"
+	// import uniNoticeBar from "../../components/uni-notice-bar/uni-notice-bar.vue"
+	// import uniIcon from "../../components/uni-icon/uni-icon.vue"
+	// import uniPopup from "@/components/uni-popup/uni-popup.vue"
 	import share from "@/components/share.vue"
 	const recorderManager = uni.getRecorderManager();
 	const innerAudioContext = uni.createInnerAudioContext();
@@ -152,9 +152,9 @@
 
 	export default {
 		components: {
-			uniNoticeBar,
-			uniIcon,
-			uniPopup,
+			// uniNoticeBar,
+			// uniIcon,
+			// uniPopup,
 			share
 		},
 		data() {

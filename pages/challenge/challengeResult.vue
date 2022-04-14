@@ -3,20 +3,23 @@
 		<!-- <view class="title">挑战赛-结果</view> -->
 		<view class="" style="margin-bottom: 20upx;">
 			<view class="">
-				<uni-steps :mydata="[
-					{title: '破坏者'}, 
+				<uni-steps :options="[
+					{title: '黑铁守卫'}, 
 					{title: '青铜守卫'}, 
 					{title: '黄金守卫'}, 
 					{title: '钻石守卫'},
-					{title: '王者'}]"
-				 :active="level-1">
+					{title: '最强王者'}]"
+				 :active="level-1"
+				 activeIcon=""
+				 activeColor="#42b983">
 				</uni-steps>
-			</view>
+			</view> 
+			
 			
 			<view class="level">
 				<view class="text-left">
 					<view v-if="level==1" class="level1">
-						破坏者
+						黑铁守卫
 					</view>
 					<view v-else-if="level==2" class="level2">
 						青铜守卫
@@ -67,7 +70,7 @@
 						</view>
 						<view class="result">
 							<view v-if="item.garbageType==item.selectedType" class="">
-								<image class="icon-img" src="../../static/icos/right-full.png" mode=""></image>
+								<image class="icon-img" :src="getImage('icos/right-full.png')" mode=""></image>
 							</view>
 							<view v-else class="">
 								<view v-if="item.garbageType==1" class="garbage-gan-item">干垃圾</view>
@@ -104,7 +107,7 @@
 </template>
 
 <script>
-	import uniSteps from "@/components/uni-steps/uni-steps.vue"
+	// import uniSteps from "@/components/uni-steps/uni-steps.vue"
 	import levelPopup from "@/components/levelPopup.vue"
 	import share from "@/components/share.vue"
 	export default {
@@ -205,7 +208,7 @@
 			}
 		},
 		components: {
-			uniSteps,
+			// uniSteps,
 			levelPopup,
 			share
 		},
@@ -213,7 +216,7 @@
 			console.log(option); //打印出上个页面传递的参数。
 			console.log(option.score); //打印出上个页面传递的参数。
 			console.log(option.list); //打印出上个页面传递的参数。
-			this.insertAd();
+			// this.insertAd();
 			this.score = option.score
 			this.list = JSON.parse(option.list);
 			if (this.score <= 1) {
@@ -231,26 +234,29 @@
 			this.popupShow = true;
 		},
 		methods: {
-			insertAd() {
-				// 在页面中定义插屏广告
-				let interstitialAd = null
+			// insertAd() {
+			// 	// 在页面中定义插屏广告
+			// 	let interstitialAd = null
 			
-				// 在页面onLoad回调事件中创建插屏广告实例
-				if (wx.createInterstitialAd) {
-					interstitialAd = wx.createInterstitialAd({
-						adUnitId: 'adunit-c9a12748b3ed91fa'
-					})
-					interstitialAd.onLoad(() => {})
-					interstitialAd.onError((err) => {})
-					interstitialAd.onClose(() => {})
-				}
+			// 	// 在页面onLoad回调事件中创建插屏广告实例
+			// 	if (wx.createInterstitialAd) {
+			// 		interstitialAd = wx.createInterstitialAd({
+			// 			adUnitId: 'adunit-c9a12748b3ed91fa'
+			// 		})
+			// 		interstitialAd.onLoad(() => {})
+			// 		interstitialAd.onError((err) => {})
+			// 		interstitialAd.onClose(() => {})
+			// 	}
 			
-				// 在适合的场景显示插屏广告
-				if (interstitialAd) {
-					interstitialAd.show().catch((err) => {
-						console.error(err)
-					})
-				}
+			// 	// 在适合的场景显示插屏广告
+			// 	if (interstitialAd) {
+			// 		interstitialAd.show().catch((err) => {
+			// 			console.error(err)
+			// 		})
+			// 	}
+			// },
+			getImage(img){
+				return this.imageUrl + img;
 			},
 			hidePopup() {
 				this.popupShow = false;

@@ -1,7 +1,7 @@
 <template>
 	<view>
 		  <swiper class="movie-swiper" :indicator-dots="true" previous-margin="50rpx" next-margin="50rpx">
-		    <swiper-item class="movie" v-for="(item, index) in weeklyMovieList" :key="index">
+		    <swiper-item class="movie" v-for="(item, index) in photoList" :key="index">
 		      
 			  <view class="container movie-card" @tap="f1">
 		        <image class="movie-image" :src="item.imagePath"></image>
@@ -19,7 +19,7 @@
 	export default {
 		data() {
 			return {
-				weeklyMovieList:[
+				photoList:[
 				{
 				  name:"垃圾1",
 				  type:"1",
@@ -58,12 +58,12 @@
 		onLoad() {
 			this.currentIndex = 0;
 				
-			// currentIndex:this.data.weeklyMovieList.length-1,//首先看到最后一个图
+			// currentIndex:this.data.photoList.length-1,//首先看到最后一个图
 			// 完成对页面的初始化操作
 		},
 		methods: {
 			f0() {
-			  this.currentIndex = this.data.weeklyMovieList.length-1
+			  this.currentIndex = this.data.photoList.length-1
 			},
 			
 			f1(event) {

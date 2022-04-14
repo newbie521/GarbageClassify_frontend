@@ -1,9 +1,13 @@
 <template>
 	<view class="content">
-		<view class="tip-text">
-			<!-- <ad unit-id="adunit-060249bea9401e5c"></ad> -->
+<!-- 		<view class="tip-text">
 			今天学习一点点，文明创造靠大家
+		</view> -->
+		<view class="">
+			<uni-notice-bar scrollable="true" show-icon="true" color="#999" backgroundColor="rgb(242,242,242)" text="提示:本查询系统就供参考,具体分类要求以属地专业管理部门为准">
+			</uni-notice-bar>
 		</view>
+		
 		<view class="nav">
 			<view class="nav-left">
 				<scroll-view scroll-y>

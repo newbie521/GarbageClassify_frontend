@@ -38,15 +38,15 @@
             "path" : "pages/mine/mine",
             "style" :                                                                                    
             {
-                "navigationBarTitleText": "",
-                "enablePullDownRefresh": false
+                "navigationBarTitleText": "我的",
+                "enablePullDownRefresh": true
             }   
         }
         ,{
             "path" : "pages/mine/about/about",
             "style" :                                                                                    
             {
-                "navigationBarTitleText": "",
+                "navigationBarTitleText": "关于我们",
                 "enablePullDownRefresh": false
             }
             
@@ -55,8 +55,8 @@
             "path" : "pages/mine/challengeList/challengeList",
             "style" :                                                                                    
             {
-                "navigationBarTitleText": "",
-                "enablePullDownRefresh": false
+                "navigationBarTitleText": "挑战赛记录",
+                "enablePullDownRefresh": true
             }
             
         }
@@ -64,11 +64,12 @@
             "path" : "pages/mine/photoList/photoList",
             "style" :                                                                                    
             {
-                "navigationBarTitleText": "",
+                "navigationBarTitleText": "图片识别记录",
                 "enablePullDownRefresh": false
             }
             
         }
+    
     ],
 	"globalStyle": {
 		"navigationBarTextStyle": "black",

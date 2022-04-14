@@ -6,9 +6,9 @@
 					<view @click="takePhoto" class="input-view-item input-view-camera">
 						<image class="search-img" :src="getImage('icos/camera.png')"></image>
 					</view>
-					<view @click="readyRecord" class="input-view-item input-view-speech">
+<!-- 					<view @click="readyRecord" class="input-view-item input-view-speech">
 						<image class="search-img" :src="getImage('icos/record.png')"></image>
-					</view>
+					</view> -->
 					<view class="input-view-item input-view-search">
 						<input confirm-type="search" :placeholder="defaultKeyword" @search="doSearch(false)" @input="inputChange"
 						 @confirm="doSearch(false)" v-model="keyword" class="input-search" name="input" placeholder="输入搜索关键词" />
@@ -173,6 +173,7 @@
 				animationData: {},
 				maxTime: 5000,
 				frame: 50,
+				base64:"",
 
 				// 录音相关的 值	end
 
@@ -470,6 +471,41 @@
 			hidePopup() {
 				this.popupShow = false;
 			},
+			
+			
+			
+			async getImageBase64_readFile(tempFilePath) {
+			  this.base64 = await new Promise(resolve => {
+			    //获取全局唯一的文件管理器 
+			    wx.getFileSystemManager().readFile({ //读取本地文件内容
+			      filePath: tempFilePath, // 文件路径
+			      encoding: 'base64', // 返回格式
+			      success: ({
+			        data
+			      }) => {
+			        return resolve('data:image/jpg;base64,' + data);
+			      }
+			    });
+				
+			  });
+			  console.log("base64: "+ this.base64);
+			},
+			
+			
+			// getImageBase64_readFile(tempFilePath) {
+			// 	let me = this;
+			//     wx.getFileSystemManager().readFile({ //读取本地文件内容
+			//       filePath: tempFilePath, // 文件路径
+			//       encoding: 'base64', // 返回格式
+			//       success(res){
+			// 		  console.log("res: " + res.data);
+			// 		  me.base64 = res.data;
+			// 	  }
+			//     });
+			//   // console.log("base64: "+ this.
+			// },
+			
+			
 			// 拍照
 			takePhoto() {
 				let me = this;
@@ -480,7 +516,32 @@
 							title: '正在努力识别中...'
 						});
 						me.imagePath = res.tempFilePaths[0];
-						console.log("sdsdsdsadsadsa: "+me.imagePath)
+						console.log("图像地址: "+me.imagePath);
+						
+						me.getImageBase64_readFile(me.imagePath).then(()=>{
+							console.log("base64:" + me.base64);
+							
+							uni.request({
+								url: "http://ceshi.mua5201314.com/api/checkPic",
+								method: 'POST',
+								header: {
+									'Content-Type': 'application/json'
+								},
+								
+								data: {
+									"image": me.base64,
+								},
+								success: function(res1) {
+									console.log("res.data.code: " + res1.data.code)
+									// let res11 = JSON.parse(res1.data);
+									console.log('检测结果: '+ res1.data.content);
+								}
+							});
+						});
+						
+						
+					
+						
 						uni.uploadFile({
 							url: me.serverUrl + '/upload/image', //仅为示例，非真实的接口地址
 							filePath: res.tempFilePaths[0],
@@ -494,6 +555,7 @@
 								// console.log(data);
 								let uniOne = data.uni;
 								me.keyword = data.keyword;
+								console.log("me.keyword" + me.keyword);
 
 								me.keywordList = me.drawCorrelativeKeyword(data.results, me.keyword);
 								if (uniOne) { // 查找到的唯一值不等于空

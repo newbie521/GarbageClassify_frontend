@@ -96,7 +96,7 @@ position: relative;
 .input-view-speech,
 .input-view-search {
 	/* border: 1px solid red; */
-	/* border-radius: 20upx; */
+	border-radius: 20upx;
 }
 
 .input-view-camera {}
@@ -109,7 +109,7 @@ position: relative;
 
 .input-search {
 	height: 80upx;
-	width: 320upx;
+	width: 420upx;
 	text-align:center;
 }
 
@@ -120,7 +120,7 @@ position: relative;
 
 .font-search {
 	/* border: 2px solid red; */
-	width: 80upx;
+	width: 60upx;
 	padding: 10upx;
 	color: #72c69c;
 	font-weight: bold;

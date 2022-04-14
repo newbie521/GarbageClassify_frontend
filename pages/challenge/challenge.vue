@@ -94,21 +94,7 @@
 			// for (let [key, value] of map) {
 			// 	console.log(`${key}==${value}`)
 			// }
-			uni.login({
-				provider: 'weixin',
-				success: function(loginRes) {
-					console.log("loginRes")
-					console.log(loginRes);
-					// 获取用户信息
-					uni.getUserInfo({
-						provider: 'weixin',
-						success: function(infoRes) {
-							console.log(infoRes);
-							console.log('用户昵称为：' + infoRes.userInfo.nickName);
-						}
-					});
-				}
-			});
+			console.log("userid:"+getApp().globalData.userid)
 			this.randTen();
 		},
 		methods: {
@@ -207,10 +193,10 @@
 					let list = JSON.stringify(this.questionBanks);
 					let score = this.score;
 					uni.request({
-						url: this.serverUrl + '/challenge', //仅为示例，并非真实接口地址。
+						url: this.serverUrl + '/challenge/result', //仅为示例，并非真实接口地址。
 						data: {
 							"score": score,
-							"userName": "张三", // 虚拟名称
+							"userid": getApp().globalData.userid,
 							"list": this.questionBanks
 						},
 						header: {
