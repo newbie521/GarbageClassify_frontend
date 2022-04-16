@@ -100,7 +100,9 @@ Object.defineProperty(exports, "__esModule", { value: true });exports.default = 
     typeid: 1,
     openid: "",
     userid: "",
-    flag: false },
+    flag: false,
+    islogin: false,
+    isforlogin: false },
 
   onLaunch: function onLaunch() {
     console.log('App Launch');
@@ -118,6 +120,8 @@ Object.defineProperty(exports, "__esModule", { value: true });exports.default = 
       this.globalData.openid = data.openid;
       this.globalData.userid = data.userid;
       this.globalData.flag = true;
+      this.globalData.islogin = true;
+
     },
     CheckSession: function CheckSession() {
       var _this = this;

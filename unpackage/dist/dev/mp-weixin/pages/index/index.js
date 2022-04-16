@@ -484,13 +484,18 @@ innerAudioContext.autoplay = true;var _default =
     },
     // 幻灯片 的点击跳转事件 start
     navigateTo: function navigateTo(skipUrl) {
-      uni.navigateTo({
-        url: '/pages/webview/webview?url=' + skipUrl });
-
+      // uni.navigateTo({
+      // 	url: '/pages/webview/webview?url=' + skipUrl
+      // });
     },
     // 幻灯片 的点击跳转事件 end
     // 是搜索框中的搜索按钮
     searchKeyword: function searchKeyword() {
+      if (getApp().globalData.islogin == false) {
+        this.noTitlemodalTap();
+        return;
+      }
+
       var me = this;
       if (!me.keyword) return;
       uni.request({
@@ -581,6 +586,28 @@ innerAudioContext.autoplay = true;var _default =
         url: '/pages/type/type' });
 
     },
+
+    noTitlemodalTap: function noTitlemodalTap() {
+      uni.showModal({
+        title: "请先登录",
+        content: "登陆之后即可查询(=￣ω￣=)",
+        confirmText: "好的",
+        showCancel: false,
+        success: function success(res) {
+          if (res.confirm) {
+            console.log('用户点击确定');
+            getApp().globalData.isforlogin = true;
+            uni.switchTab({
+              url: "/pages/mine/mine" });
+
+          } else if (res.cancel) {
+            console.log('用户点击取消');
+          }
+        } });
+
+
+    },
+
     gotoSearch: function gotoSearch() {
       uni.navigateTo({
         url: '/pages/search/search' });
@@ -588,6 +615,10 @@ innerAudioContext.autoplay = true;var _default =
     },
     // 搜索框的语音调用
     takePhoto2: function takePhoto2() {
+      if (getApp().globalData.islogin == false) {
+        this.noTitlemodalTap();
+        return;
+      }
       uni.navigateTo({
         url: "/pages/search/search?type=1" });
 

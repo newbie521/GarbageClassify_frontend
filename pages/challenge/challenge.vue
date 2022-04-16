@@ -144,8 +144,34 @@
 				});
 			},
 			
+			noTitlemodalTap() {
+				uni.showModal({
+					title: "请先登录",
+					content: "登陆之后即可查询(=￣ω￣=)",
+					confirmText: "好的",
+					showCancel: false,
+					success: function(res) {
+						if (res.confirm) {
+							console.log('用户点击确定');
+							getApp().globalData.isforlogin = true;
+							uni.switchTab({
+								url: `/pages/mine/mine`
+							});
+						} else if (res.cancel) {
+							console.log('用户点击取消');
+						}
+					},
+					
+				})
+			},
+			
 			// 判断对错，正确则动画到下一题，错误则提示，再动画到下一题
 			switchTabToClassify(index) {
+				if(getApp().globalData.islogin == false){
+					this.noTitlemodalTap();
+					return ;
+				}
+				
 				if (this.current == 9) this.controlShow = false;
 				console.log(index)
 				console.log(this.questionBanks[this.current])

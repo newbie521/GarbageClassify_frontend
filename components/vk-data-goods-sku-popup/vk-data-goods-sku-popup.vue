@@ -21,7 +21,7 @@
 								<text class="price">{{goodsInfo.name}}</text>
 								<!-- <text class="price" :class="priceCom.length > 16 ? 'price2' : ''">{{ priceCom }}</text> -->
 							</view>
-							<view class="inventory" v-if="!hideStock">日期：{{ goodsInfo.sku_list[0].goods_name }}</view>
+							<view class="inventory" v-if="!hideStock">{{ goodsInfo.sku_list[0].goods_name }}</view>
 							<view class="inventory" v-else></view>
 							<!-- <view class="choose" v-show="isManyCom">正确率：{{ selectArr.join(' ') }}</view> -->
 							<view class="choose" v-show="isManyCom">{{ stockText }}：{{ stockCom }}</view>

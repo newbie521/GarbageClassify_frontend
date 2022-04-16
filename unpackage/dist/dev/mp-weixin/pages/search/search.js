@@ -425,6 +425,29 @@ innerAudioContext.autoplay = true;var _default =
       "请尝试换一个搜索关键词试试看吧",
       "很抱歉,识别精灵未能匹配到,将会尽快完善 ᕙ(⇀‸↼‵‵)ᕗ"],
 
+      simpleTips: [
+      "让垃圾找到自己的归属",
+      "请给垃圾找个合适的家",
+      "希望有一天，垃圾桶也会下岗",
+      "垃圾分类放，环境有保障",
+      "垃圾要分类，资源要利用",
+      "今天分一分，明天美十分",
+      "积极参与垃圾分类，共创优美社区环境",
+      "分类收集人人有责，男女老幼齐来参与",
+      "提高社区的品味，从垃圾分类开始",
+      "垃圾分类，举手之劳",
+      "配合垃圾分类，争做文明市民",
+      "垃圾分类益处多，环境保护靠你我",
+      "要是垃圾变为宝，分类回收不可少",
+      "请给垃圾找个合适的家",
+      "垃圾儿女要分家，安居乐业靠大家",
+      "垃圾分类人人做，做好分类为人人",
+      "让垃圾找到自己的归属",
+      "垃圾要分类，生活变美好",
+      "你我虽渺小，但意义重大",
+      "让垃圾找到自己的归属",
+      "请给垃圾找个合适的家"],
+
 
       // image 相关的值 end
       detailPopupShow: false,
@@ -1038,6 +1061,7 @@ innerAudioContext.autoplay = true;var _default =
       console.log("item: " + item);
       that.keyword = item.data.result;
 
+      that.goodsInfo._id = that.goodsInfo._id + new Date().getTime();
       that.goodsInfo.name = item.data.result;
       that.goodsInfo.goods_thumb = that.imagePath;
 
@@ -1051,8 +1075,10 @@ innerAudioContext.autoplay = true;var _default =
         that.goodsInfo.sku_list[0].sku_name_arr[0] = item.data.type;
       };
 
-      that.goodsInfo.sku_list[0].goods_name = new Date().toISOString().replace("T", " ");
-      that.goodsInfo.sku_list[0].goods_name = that.goodsInfo.sku_list[0].goods_name.substring(0, that.goodsInfo.sku_list[0].goods_name.length - 5);
+      // that.goodsInfo.sku_list[0].goods_name = new Date().toISOString().replace("T", " ");
+      // that.goodsInfo.sku_list[0].goods_name = that.goodsInfo.sku_list[0].goods_name.substring(0, that.goodsInfo.sku_list[0].goods_name.length-5);
+
+      that.goodsInfo.sku_list[0].goods_name = that.simpleTips[Math.round(Math.random() * 20)];
       that.goodsInfo.sku_list[0].stock = parseFloat(item.data.score).toFixed(2);
       that.goodsInfo.sku_list[0].image = that.imagePath;
       // console.log(that.goodsInfo.sku_list[0].image);

@@ -265,10 +265,15 @@ var _default =
         } });
 
     } else {
-      _this.GetUserInfo();
+      // _this.GetUserInfo();
     }
 
 
+  },
+  onShow: function onShow() {
+    // if(getApp().globalData.isforlogin == true){
+    // 	// this.GetUserInfo();
+    // }
   },
   methods: {
     getImage: function getImage(img) {
@@ -288,6 +293,7 @@ var _default =
           console.log('获取的信息', res.userInfo);
           _this.nickName = res.userInfo.nickName;
           _this.avatarUrl = res.userInfo.avatarUrl;
+          getApp().globalData.islogin = true;
           // _this.setNn(res.userInfo.nickName);
           // uni.getLocation({
           // 	type: 'gci02',
