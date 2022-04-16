@@ -66,9 +66,6 @@ position: relative;
 
 
 
-
-
-
 /* 搜索框 start */
 .tip-text {
 	text-align: center;
@@ -115,12 +112,12 @@ position: relative;
 
 .search-img {
 	width: 80upx;
-	height: 80upx;
+	height: 72upx;
 }
 
 .font-search {
 	/* border: 2px solid red; */
-	width: 60upx;
+	/* width: 60upx; */
 	padding: 10upx;
 	color: #72c69c;
 	font-weight: bold;
@@ -137,8 +134,8 @@ position: relative;
 }
 
 .main-img {
-	width: 200upx;
-	height: 200upx;
+	width: 275upx;
+	height: 275upx;
 	padding: 20upx;
 }
 

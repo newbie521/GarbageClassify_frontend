@@ -5,11 +5,11 @@
 			<view class="userinfo-nickname" >{{nickName}}</view>
 		</view> -->
 		<view >
-			<uni-card @tap="GetUserInfo()" :isFull="true" :title=nickName sub-title="中国" extra="18" :thumbnail="avatarUrl" is-shadow="true">
+			<uni-card @tap="GetUserInfo()" :isFull="true" :title=nickName sub-title="中国" extra="(=￣ω￣=)喵了个咪" :thumbnail="avatarUrl" is-shadow="true">
 				<view class="example-body">
 					<view class="tag-view">
 						<uni-tag :inverted="true" text="个性签名" type="primary" />
-						<text style="margin-left: 20rpx;">我爱环保</text>
+						<text style="margin-left: 20rpx;">{{tag}}</text>
 					</view>
 				</view>
 			</uni-card>
@@ -45,17 +45,17 @@
 		data() {
 			return {
 				calendarfilled: {
-					color: '#a2d9bd',
+					color: '#9BAEBC',
 					size: '30',
 					type:'calendar-filled'//icon名称
 				},
 				scan: {
-					color: '#a2d9bd',
+					color: '#EEE683',
 					size: '30',
 					type:'scan'//icon名称
 				},
 				medal: {
-					color: '#a2d9bd',
+					color: '#5DBFF5',
 					size: '30',
 					type:'medal'//icon名称
 				},
@@ -67,7 +67,8 @@
 				flag:false,
 				nickName:"临时用户",
 				avatarUrl:"/static/icos/right-full.png",
-				openid:""
+				openid:"",
+				tag:"保护环境，人人有责"
 			}
 		},
 		onLoad() {
@@ -87,7 +88,7 @@
 					},
 					success: function(res) {
 						//openid 用户唯一标识
-						console.log("55555555: "+ res.data);
+						console.log("res: "+ res.data);
 						_this.nickName = res.data.data.nickName; 
 						_this.avatarUrl = res.data.data.avatarUrl; 
 											
@@ -110,6 +111,9 @@
 				return this.imageUrl + img;
 			},
 			GetUserInfo() {
+				if(this.flag == true){
+					return false;
+				}
 				console.log('获取用户信息');
 				var _this = this;
 				uni.getUserProfile({
@@ -168,6 +172,9 @@
 									//openid 用户唯一标识
 									_this.openid = res1.data.data.openid; 
 									_this.userid = res1.data.data.userid; 
+									getApp().globalData.openid = res1.data.data.openid;
+									getApp().globalData.userid = res1.data.data.userid;
+									_this.flag = true;
 									
 									var userInfo = {
 										"openid": _this.openid,
@@ -217,12 +224,13 @@
 				console.log("tag：" + tag);
 				if(tag === 1){
 					uni.navigateTo({
-						url: `./challengeList/challengeList`,
+						url: `./keywordList/keywordList`,
 						// ?score=${score}&list=${list}
 					});
 				}else if(tag == 2){
 					uni.navigateTo({
 						url: `./photoList/photoList`
+						// url: `./about/about`
 					});			
 				}else if(tag ==3){
 					uni.navigateTo({
@@ -231,7 +239,8 @@
 					});			
 				}else if(tag ==4){
 					uni.navigateTo({
-						url: `./about/about1.vue`
+						url: `./about/about`
+						// url: `./photoList/photoList`
 					});			
 				}
 				

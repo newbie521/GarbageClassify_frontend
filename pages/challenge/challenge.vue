@@ -25,18 +25,18 @@
 			<view class="main-show-classify">
 				<view class="main-classify">
 					<view @click="switchTabToClassify(1)">
-						<image class="main-img" :src="getImage('icos/ico-1.jpg')"></image>
+						<image class="main-img" :src="getImage('classify/gan.png')"></image>
 					</view>
 					<view @click="switchTabToClassify(2)">
-						<image class="main-img" :src="getImage('icos/ico-2.jpg')"></image>
+						<image class="main-img" :src="getImage('classify/shi.png')"></image>
 					</view>
 				</view>
 				<view class="main-classify">
 					<view @click="switchTabToClassify(3)">
-						<image class="main-img" :src="getImage('icos/ico-3.jpg')"></image>
+						<image class="main-img" :src="getImage('classify/huishou.png')"></image>
 					</view>
 					<view @click="switchTabToClassify(4)">
-						<image class="main-img" :src="getImage('icos/ico-4.jpg')"></image>
+						<image class="main-img" :src="getImage('classify/youhai.png')"></image>
 					</view>
 				</view>
 			</view>
@@ -63,11 +63,9 @@
 </template>
 
 <script>
-	import share from "@/components/share.vue"
 
 	export default {
 		components: {
-			share,
 		},
 		data() {
 			return {

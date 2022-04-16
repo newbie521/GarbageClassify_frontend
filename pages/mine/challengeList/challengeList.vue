@@ -3,10 +3,10 @@
 		  <swiper class="movie-swiper" :indicator-dots="true" previous-margin="30rpx" next-margin="30rpx">
 		    <swiper-item class="movie" v-for="(item, index) in list" :key="index">
 			  <view class="container movie-card" @tap="f1">
-				<text>日期：{{item.times}}</text>
+				<text style="color: #999; font-size: 30rpx; ">日期：{{item.times}}</text>
 				
 				<view class="">
-					<image v-if="item.score<2" class="popup-image" :src="getImage('level/pohuaizhe.png')" mode=""></image>
+					<image v-if="item.score<2" class="popup-image" :src="getImage('level/heitie.png')" mode=""></image>
 					<image v-else-if="item.score<5" class="popup-image" :src="getImage('level/qingtong.png')" mode=""></image>
 					<image v-else-if="item.score<8" class="popup-image" :src="getImage('level/huangjin.png')" mode=""></image>
 					<image v-else-if="item.score<10" class="popup-image" :src="getImage('level/zuanshi.png')" mode=""></image>
@@ -20,10 +20,10 @@
 				<view v-else-if="item.score<8" class="">黄金守卫</view>
 				<view v-else-if="item.score<10" class="">钻石守卫</view>
 				<view v-else-if="item.score==10" class="">最强王者</view>
-		        <text>分数：{{item.score}}</text>
+		        <text>分数：{{item.score}}0</text>
 				<view class="">
 					<view class="table">
-						<view class="table-item" v-for="(item1, index1) in item.result" :key="index1" :class="index1%2==1?'gray':''">
+						<view class="table-item" v-for="(item1, index1) in item.result" :key="index1" :class="index1%2==1?'style1':'style2'">
 							<view class="garbage-name">{{item1.garbageName}}</view>
 							<view class="selected" :class="item1.garbageType!=item1.selectedType?'through':''">
 								<view v-if="item1.selectedType==1" class="">干垃圾</view>
@@ -98,7 +98,7 @@
 			_this.currentIndex = 0;
 			
 			uni.request({
-				url: _this.serverUrl + '/challenge/history', //仅为示例，并非真实接口地址。
+				url: _this.serverUrl + '/history/challenge', //仅为示例，并非真实接口地址。
 				data: {
 					"userid": getApp().globalData.userid,
 				},
@@ -118,7 +118,7 @@
 						};
 						meList.result = JSON.parse(res.data.data[i].result);
 						meList.score = res.data.data[i].score;
-						meList.times= res.data.data[i].times;
+						meList.times= res.data.data[i].times.replace("T", " ");
 						_this.list.push(meList);
 					}
 					console.log("list: " + _this.list[0].result);
@@ -176,6 +176,9 @@
 <style>
 	@import url("../photoList/photoList.css");
 	@import url("challengeList.css");
+	page{
+		background-color: #f2f2f2;
+	}
 </style>
 
 

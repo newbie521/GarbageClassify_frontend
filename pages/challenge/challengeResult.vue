@@ -102,14 +102,13 @@
 		
 		<!-- 提示组件 -->
 		<levelPopup :show="popupShow" @hidePopup="hidePopup" :level="level" />
-		<share />
+		<!-- <share /> -->
 	</view>
 </template>
 
 <script>
 	// import uniSteps from "@/components/uni-steps/uni-steps.vue"
 	import levelPopup from "@/components/levelPopup.vue"
-	import share from "@/components/share.vue"
 	export default {
 		data() {
 			return {
@@ -210,7 +209,6 @@
 		components: {
 			// uniSteps,
 			levelPopup,
-			share
 		},
 		onLoad: function(option) { //option为object类型，会序列化上个页面传递的参数
 			console.log(option); //打印出上个页面传递的参数。

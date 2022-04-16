@@ -8,7 +8,7 @@
 				</view>
 				<view class="level-image">
 					<view class="">
-						<image v-if="level==1" class="popup-image" :src="getImage('level/pohuaizhe.png')" mode=""></image>
+						<image v-if="level==1" class="popup-image" :src="getImage('level/heitie.png')" mode=""></image>
 						<image v-else-if="level==2" class="popup-image" :src="getImage('level/qingtong.png')" mode=""></image>
 						<image v-else-if="level==3" class="popup-image" :src="getImage('level/huangjin.png')" mode=""></image>
 						<image v-else-if="level==4" class="popup-image" :src="getImage('level/zuanshi.png')" mode=""></image>
@@ -28,6 +28,7 @@
 		</view>
 	</view>
 </template>
+
 
 <script>
 	export default {

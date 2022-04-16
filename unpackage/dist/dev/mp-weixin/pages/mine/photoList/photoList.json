@@ -1,0 +1,9 @@
+{
+  "navigationBarTitleText": "图片识别记录",
+  "enablePullDownRefresh": true,
+  "usingComponents": {
+    "uni-list": "/uni_modules/uni-list/components/uni-list/uni-list",
+    "uni-list-chat": "/uni_modules/uni-list/components/uni-list-chat/uni-list-chat",
+    "vk-data-goods-sku-popup": "/components/vk-data-goods-sku-popup/vk-data-goods-sku-popup"
+  }
+}

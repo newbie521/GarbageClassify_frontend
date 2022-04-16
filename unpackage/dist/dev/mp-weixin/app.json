@@ -1,15 +1,16 @@
 {
   "pages": [
     "pages/index/index",
+    "pages/mine/about/about1",
     "pages/challenge/challengeResult",
     "pages/search/search",
     "pages/challenge/challenge",
-    "pages/more/more",
     "pages/type/type",
     "pages/webview/webview",
     "pages/mine/mine",
     "pages/mine/about/about",
     "pages/mine/challengeList/challengeList",
+    "pages/mine/keywordList/keywordList",
     "pages/mine/photoList/photoList"
   ],
   "subPackages": [],
@@ -55,5 +56,6 @@
       "desc": "好的"
     }
   },
-  "usingComponents": {}
+  "usingComponents": {},
+  "sitemapLocation": "sitemap.json"
 }

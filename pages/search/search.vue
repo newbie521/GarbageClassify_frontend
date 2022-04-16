@@ -31,7 +31,7 @@
 						<view v-else-if="row.garbageType==4" class="keyword-type garbage-youhai">有害垃圾</view>
 					</view>
 					<view class="keyword-img" @tap="setkeyword(row)">
-						<image src="/static/HM-search/back.png"></image>
+						<image :src="getImage('HM-search/back.png')"></image>
 					</view>
 				</view>
 <!-- 				<view>
@@ -43,7 +43,7 @@
 					<view class="keyword-list-header">
 						<view>历史搜索</view>
 						<view>
-							<image @tap="oldDelete" :src="getImage('HM-search/delete.png')"></image>
+							<image @tap="oldDelete" :src="getImage('icos/delete.png')"></image>
 						</view>
 					</view>
 					<view class="keyword">
@@ -129,15 +129,23 @@
 			</view>
 
 		</uni-popup>
-		<share />
+		
+		<vk-data-goods-sku-popup
+		  ref="skuPopup"
+		  v-model="skuKey" 
+		  border-radius="20" 
+		  :localdata="goodsInfo"
+		  :mode="skuMode"
+		  @open="onOpenSkuPopup"
+		  @close="onCloseSkuPopup"
+		></vk-data-goods-sku-popup>
+		<!-- <share /> -->
 	</view>
 </template>
 
 <script>
 	//引用mSearch组件，如不需要删除即可
-	import uniPopup from "@/components/uni-popup/uni-popup.vue"
 	import myPopup from "@/components/myPopup.vue"
-	import share from "@/components/share.vue"
 
 	const recorderManager = uni.getRecorderManager();
 	const innerAudioContext = uni.createInnerAudioContext();
@@ -147,9 +155,7 @@
 	export default {
 		components: {
 			//引用mSearch组件，如不需要删除即可
-			uniPopup,
 			myPopup,
-			share
 		},
 		data() {
 			return {
@@ -174,6 +180,13 @@
 				maxTime: 5000,
 				frame: 50,
 				base64:"",
+				
+				// 是否打开SKU弹窗
+				skuKey:false,
+				// SKU弹窗模式
+				skuMode:1,
+				// 后端返回的商品信息
+				goodsInfo:{},
 
 				// 录音相关的 值	end
 
@@ -518,65 +531,68 @@
 						me.imagePath = res.tempFilePaths[0];
 						console.log("图像地址: "+me.imagePath);
 						
-						me.getImageBase64_readFile(me.imagePath).then(()=>{
-							console.log("base64:" + me.base64);
+						// me.getImageBase64_readFile(me.imagePath).then(()=>{
+						// 	console.log("base64:" + me.base64);
 							
-							uni.request({
-								url: "http://ceshi.mua5201314.com/api/checkPic",
-								method: 'POST',
-								header: {
-									'Content-Type': 'application/json'
-								},
+						// 	uni.request({
+						// 		url: "http://ceshi.mua5201314.com/api/checkPic",
+						// 		method: 'POST',
+						// 		header: {
+						// 			'Content-Type': 'application/json'
+						// 		},
 								
-								data: {
-									"image": me.base64,
-								},
-								success: function(res1) {
-									console.log("res.data.code: " + res1.data.code)
-									// let res11 = JSON.parse(res1.data);
-									console.log('检测结果: '+ res1.data.content);
-								}
-							});
-						});
-						
-						
-					
-						
+						// 		data: {
+						// 			"image": me.base64,
+						// 		},
+						// 		success: function(res1) {
+						// 			console.log("res.data.code: " + res1.data.code)
+						// 			// let res11 = JSON.parse(res1.data);
+						// 			console.log('检测结果: '+ res1.data.content);
+						// 		}
+						// 	});
+						// });
+							
 						uni.uploadFile({
 							url: me.serverUrl + '/upload/image', //仅为示例，非真实的接口地址
 							filePath: res.tempFilePaths[0],
 							name: 'file',
-							success: (uploadFileRes) => {
-								console.log(uploadFileRes.data);
-								let res = JSON.parse(uploadFileRes.data);
-								let data = res.data;
-								let response = JSON.parse(data.response);
-								console.log(response.result);
-								// console.log(data);
-								let uniOne = data.uni;
-								me.keyword = data.keyword;
-								console.log("me.keyword" + me.keyword);
-
-								me.keywordList = me.drawCorrelativeKeyword(data.results, me.keyword);
-								if (uniOne) { // 查找到的唯一值不等于空
-									me.isShowKeywordList = true;
-									me.detailPopupShow = true;
-
-									me.detailShowObject = {
-										keyword: uniOne.garbageName,
-										garbageType: uniOne.garbageType,
-										remark: uniOne.remark,
-									}
-								} else if (me.keywordList.length > 0) {
-									me.isShowKeywordList = true;
-
-								} else {
-									me.imageResults = response.result;
-									me.imagesResultShow = true;
-								}
-
-
+							formData: {
+								'userid': getApp().globalData.userid
 							},
+							success: (uploadFileRes) => {
+								console.log(JSON.parse(uploadFileRes.data));
+								me.openSkuPopup(JSON.parse(uploadFileRes.data));
+							},
+							// 百度接口的回调函数
+							// success: (uploadFileRes) => {
+							// 	console.log(uploadFileRes.data);
+							// 	let res = JSON.parse(uploadFileRes.data);
+							// 	let data = res.data;
+							// 	let response = JSON.parse(data.response);
+							// 	console.log(response.result);
+							// 	// console.log(data);
+							// 	let uniOne = data.uni;
+							// 	me.keyword = data.keyword;
+							// 	console.log("me.keyword" + me.keyword);
+
+							// 	me.keywordList = me.drawCorrelativeKeyword(data.results, me.keyword);
+							// 	if (uniOne) { // 查找到的唯一值不等于空
+							// 		me.isShowKeywordList = true;
+							// 		me.detailPopupShow = true;
+
+							// 		me.detailShowObject = {
+							// 			keyword: uniOne.garbageName,
+							// 			garbageType: uniOne.garbageType,
+							// 			remark: uniOne.remark,
+							// 		}
+							// 	} else if (me.keywordList.length > 0) {
+							// 		me.isShowKeywordList = true;
+
+							// 	} else {
+							// 		me.imageResults = response.result;
+							// 		me.imagesResultShow = true;
+							// 	}
+							// },
 							complete() {
 								uni.hideLoading();
 							}
@@ -709,7 +725,7 @@
 				// });
 				// this.inputChange();
 				uni.request({
-					url: this.serverUrl + "/qb/uniname/" + this.keyword, //仅为示例
+					url: this.serverUrl + "/qb/uniname/"+ getApp().globalData.userid + "/" + this.keyword , 
 					success: (res) => {
 						console.log(res);
 						let data = res.data.data;
@@ -722,11 +738,16 @@
 								garbageType: uniOne.garbageType,
 								remark: uniOne.remark,
 							}
+							if (results.length > 0) {
+								this.keywordList = this.drawCorrelativeKeyword(results, this.keyword);
+							}
+							return true;
 						}
-						if (results.length > 0) {
+						else if(results.length > 0) {
 							this.keywordList = this.drawCorrelativeKeyword(results, this.keyword);
+							this.noTitlemodalTap();
 						}
-						if (this.keywordList == 0 && !this.detailPopupShow) {
+						else if (!this.detailPopupShow) {
 							this.noTitlemodalTap();
 						}
 						// this.keywordList = this.drawCorrelativeKeyword(res.data.data, keyword);
@@ -769,7 +790,84 @@
 						this.oldKeywordList = OldKeys; //更新历史搜索
 					}
 				});
-			}
+			},
+			// 获取商品信息，并打开sku弹出
+			openSkuPopup(item){
+				let that = this;
+			  /**
+			   * 获取商品信息
+			   * 这里可以看到每次打开SKU都会去重新请求商品信息,为的是每次打开SKU组件可以实时看到剩余库存
+			   */
+			  // 此处写接口请求，并将返回的数据进行处理成goodsInfo的数据格式，
+			  // goodsInfo是后端返回的数据
+			  that.goodsInfo = {
+			    "_id":"002",
+			    "name": "垃圾",
+			    "goods_thumb":"https://res.lancome.com.cn/resources/2020/9/11/15998112890781924_920X920.jpg?version=20200917220352530",
+			    "sku_list": [
+			      {
+			        "_id": "004",
+			        "goods_id": "002",
+			        "goods_name": "香水",
+			        "image": "https://res.lancome.com.cn/resources/2020/9/11/15998112890781924_920X920.jpg?version=20200917220352530",
+			        "price": 19800,
+			        "sku_name_arr": ["湿垃圾"],
+			        "stock": 0.001
+			      }
+			    ],
+			    "spec_list": [
+			      {
+			        "list": [
+			          {
+			            "name": "干垃圾"
+			          },
+			          {
+			            "name": "湿垃圾"
+			          },
+			          {
+			            "name": "可回收物"
+			          },
+			          {
+			            "name": "有害垃圾"
+			          }
+			        ],
+			        "name": "类型"
+			      }
+			    ]
+			  };
+
+			  console.log("item: "+ item);
+			  that.keyword = item.data.result;
+			  
+			  that.goodsInfo.name = item.data.result;
+			  that.goodsInfo.goods_thumb = that.imagePath;
+			  
+			  if(item.data.type=="其他垃圾"){
+			  	that.goodsInfo.sku_list[0].sku_name_arr[0]= "干垃圾";
+			  }
+			  else if(item.data.type=="厨余垃圾"){
+			  	that.goodsInfo.sku_list[0].sku_name_arr[0]= "湿垃圾";
+			  }
+			  else{
+			  	that.goodsInfo.sku_list[0].sku_name_arr[0]= item.data.type;
+			  };
+			  
+			  that.goodsInfo.sku_list[0].goods_name = new Date().toISOString().replace("T", " ");
+			  that.goodsInfo.sku_list[0].goods_name = that.goodsInfo.sku_list[0].goods_name.substring(0, that.goodsInfo.sku_list[0].goods_name.length-5);
+			  that.goodsInfo.sku_list[0].stock = parseFloat(item.data.score).toFixed(2)
+			  that.goodsInfo.sku_list[0].image = that.imagePath;
+			  // console.log(that.goodsInfo.sku_list[0].image);
+			  that.skuKey = true;
+			
+			},
+			// sku组件 开始-----------------------------------------------------------
+			onOpenSkuPopup(){
+			  console.log("监听 - 打开sku组件");
+			},
+			onCloseSkuPopup(res){
+			  console.log("监听 - 关闭sku组件");
+					console.log(res);
+			},
 		}
 	}
 </script>

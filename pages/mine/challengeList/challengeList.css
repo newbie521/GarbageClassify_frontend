@@ -71,10 +71,12 @@
 	line-height: 50upx;
 }
 
-.gray {
-	background-color: #f0f0f0;
+.style1{
+	background-color: #e6f4f1;
 }
-
+.style2{
+	background-color: #eefcfe;
+}
 .garbage-gan-item {
 	color: rgb(44, 43, 39);
 }
@@ -137,4 +139,10 @@
 }
 .level5{
 	color: #72C69C;
+}
+
+.popup-image{
+	width: 200upx;
+	height: 200upx;
+	border-radius: 20rpx;
 }

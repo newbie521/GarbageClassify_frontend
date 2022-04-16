@@ -16,22 +16,23 @@
 					 class="inner-text">
 						{{detail.remark}}
 					</view>
-					<view class="inner-text inner-button">
-						<button type="primary" class="text-button" open-type="share">分享给朋友</button>
-						<button class="text-button i-know" @tap="hide">我知道了</button>
-					</view>
+					
 					<view class="" v-show="false">
 						<button type="warn" class=" inner-text-kefu" plain open-type="contact"> 给客服留言</button>
 						<!-- <button class="inner-text inner-text-kefu" plain open-type="contact"> 意见反馈</button> -->
 					</view>
 					<view class="inner-text">
-						<image v-if="detail.garbageType==1" class="show-img" :src="getImage('classify/style-gan.jpg')"></image>
-						<image v-else-if="detail.garbageType==2" class="show-img-shi" :src="getImage('classify/style-shi.jpg')"></image>
-						<image v-else-if="detail.garbageType==3" class="show-img-huishou" :src="getImage('classify/style-huishou.jpg')"></image>
-						<image v-else-if="detail.garbageType==4" class="show-img" :src="getImage('classify/style-youhai.jpg')"></image>
+						<image v-if="detail.garbageType==1" class="show-img" :src="getImage('classify/style-gan.png')"></image>
+						<image v-else-if="detail.garbageType==2" class="show-img-shi" :src="getImage('classify/style-shi.png')"></image>
+						<image v-else-if="detail.garbageType==3" class="show-img-huishou" :src="getImage('classify/style-huishou.png')"></image>
+						<image v-else-if="detail.garbageType==4" class="show-img" :src="getImage('classify/style-youhai.png')"></image>
 <!-- 						<view>
 							<ad unit-id="adunit-060249bea9401e5c"></ad>
 						</view> -->
+					</view>
+					<view class="inner-text inner-button">
+						<!-- <button type="primary" class="text-button" open-type="share">分享给朋友</button> -->
+						<button class="text-button i-know" @tap="hide">我知道了</button>
 					</view>
 				</view>
 
@@ -107,7 +108,7 @@
 		/* justify-content: center; */
 		text-align: center;
 		margin-bottom: 10upx;
-		font-size: 34upx;
+		font-size: 40upx;
 	}
 
 	.inner-text-kefu {
@@ -139,33 +140,36 @@
 	}
 
 	.text-button {
+		text-align: center;
+		justify-content: center;
 		padding-left: 70upx;
-		padding-right: 70upx;
-		font-size: 28upx;
-		height: 60upx;
-		line-height: 60upx;
-
+		padding-right: 60upx;
+		font-size: 40upx;
+		height: 80upx;
+		line-height: 80upx;
 	}
 
 	.i-know {
-		background-color: #007aff;
+		background-color: #72c69c;
 		color: #fff;
 	}
 
 	.show-img {
 		width: 530upx;
-		height: 600upx;
+		height: 420upx;
 		margin: 30upx 0;
 	}
 
 	.show-img-shi {
-		width: 510upx;
-		height: 620upx;
+		width: 530upx;
+		height: 420upx;
+		margin: 30upx 0;
 	}
 
 	.show-img-huishou {
-		width: 500upx;
-		height: 620upx;
+		width: 530upx;
+		height: 420upx;
+		margin: 30upx 0;
 	}
 
 

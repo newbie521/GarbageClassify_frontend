@@ -99,18 +99,18 @@
 		<view class="main-show-classify">
 			<view class="main-classify">
 				<view @click="switchTabToClassify(1)">
-					<image class="main-img" :src="getImage('icos/ico-1.jpg')"></image>
+					<image class="main-img" :src="getImage('icos/ico-1.png')"></image>
 				</view>
 				<view @click="switchTabToClassify(2)">
-					<image class="main-img" :src="getImage('icos/ico-2.jpg')"></image>
+					<image class="main-img" :src="getImage('icos/ico-2.png')"></image>
 				</view>
 			</view>
 			<view class="main-classify">
 				<view @click="switchTabToClassify(3)">
-					<image class="main-img" :src="getImage('icos/ico-3.jpg')"></image>
+					<image class="main-img" :src="getImage('icos/ico-3.png')"></image>
 				</view>
 				<view @click="switchTabToClassify(4)">
-					<image class="main-img" :src="getImage('icos/ico-4.jpg')"></image>
+					<image class="main-img" :src="getImage('icos/ico-4.png')"></image>
 				</view>
 			</view>
 		</view>
@@ -136,15 +136,13 @@
 		<!-- <view >
 			<ad unit-id="adunit-060249bea9401e5c"></ad>
 		</view> -->
-		<share />
+		<!-- <share /> -->
 	</view>
 </template>
 
 <script>
 	// import uniNoticeBar from "../../components/uni-notice-bar/uni-notice-bar.vue"
 	// import uniIcon from "../../components/uni-icon/uni-icon.vue"
-	// import uniPopup from "@/components/uni-popup/uni-popup.vue"
-	import share from "@/components/share.vue"
 	const recorderManager = uni.getRecorderManager();
 	const innerAudioContext = uni.createInnerAudioContext();
 
@@ -155,7 +153,6 @@
 			// uniNoticeBar,
 			// uniIcon,
 			// uniPopup,
-			share
 		},
 		data() {
 			return {
@@ -316,7 +313,7 @@
 				let me = this;
 				if (!me.keyword) return;
 				uni.request({
-					url: me.serverUrl + "/qb/uniname/" + me.keyword, //仅为示例
+					url: this.serverUrl + "/qb/uniname/"+ getApp().globalData.userid + "/" + this.keyword , 
 					success: (res) => {
 						console.log(res);
 						// me.keywordList = me.drawCorrelativeKeyword(res.data.data, me.keyword);

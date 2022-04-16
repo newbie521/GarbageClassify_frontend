@@ -25,10 +25,10 @@
 				<scroll-view scroll-y :style="'height:'+height+'px'" scroll-with-animation>
 					<view class="view-img">
 						<view>
-							<image v-if="index!=null" class="show-img" :src="getImage('showimg/style1-'+index+'.jpg')"></image>
+							<image v-if="index!=null" class="show-img" :src="getImage('showimg/style1-'+index+'.png')"></image>
 						</view>
 					</view>
-					<view @tap="showDetailGarbage(item)" class="nav-right-item" v-for="(item,i) in currentDetail" :key="i" :class="i%2==0?'style1':''">
+					<view @tap="showDetailGarbage(item)" class="nav-right-item" v-for="(item,i) in currentDetail" :key="i" :class="i%2==0?'style1':'style2'">
 						<view>{{item.garbageName}}</view>
 					</view>
 				</scroll-view>
@@ -37,18 +37,16 @@
 		<view class="">
 			<my-popup :show="detailPopupShow" :detail="detailShowObject" @hideMypopup="hideMypopup"></my-popup>
 		</view>
-		<share />
+		<!-- <share /> -->
 	</view>
 </template>
 
 <script>
 	import myPopup from "@/components/myPopup.vue"
-	import share from "@/components/share.vue"
 
 	export default {
 		components: {
 			myPopup,
-			share
 		},
 		data() {
 			return {

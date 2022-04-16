@@ -1,0 +1,7 @@
+{
+  "usingComponents": {
+    "uni-popup": "/uni_modules/uni-popup/components/uni-popup/uni-popup",
+    "vk-data-goods-sku-popup": "/components/vk-data-goods-sku-popup/vk-data-goods-sku-popup",
+    "my-popup": "/components/myPopup"
+  }
+}

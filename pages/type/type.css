@@ -37,41 +37,41 @@
 }
 
 .garbage-gan {
-	background-color: rgb(44, 43, 39);
+	background-color: #616d6d;
 	color: #FFFFFF;
 }
 
 .garbage-shi {
-	background-color: rgb(102, 63, 52);
+	background-color: #00844b;
 	color: #FFFFFF;
 }
 
 .garbage-huishou {
-	background-color: rgb(36, 71, 131);
+	background-color: #005991;
 	color: #FFFFFF;
 }
 
 .garbage-youhai {
-	background-color: rgb(229, 49, 34);
+	background-color: #ce4a46;
 	color: #FFFFFF;
 }
 
 /* boder */
 
 .garbage-gan-border {
-	border-left: 10upx solid rgb(44, 43, 39);
+	border-left: 10upx solid #616d6d;
 }
 
 .garbage-shi-border {
-	border-left: 10upx solid rgb(102, 63, 52);
+	border-left: 10upx solid #00844b;
 }
 
 .garbage-huishou-border {
-	border-left: 10upx solid rgb(36, 71, 131);
+	border-left: 10upx solid #005991;
 }
 
 .garbage-youhai-border {
-	border-left: 10upx solid rgb(229, 49, 34);
+	border-left: 10upx solid #ce4a46;
 }
 
 .main-img {
@@ -99,7 +99,10 @@
 	border-radius: 10upx;
 }
 .style1{
-	background-color: #f5f5f5;
+	background-color: #e6f4f1;
+}
+.style2{
+	background-color: #eefcfe;
 }
 
 .active {

@@ -241,17 +241,17 @@ view {
 
 .input-search {
 	height: 80upx;
-	width: 420upx;
+	width: 400upx;
 }
 
 .search-img {
 	width: 80upx;
-	height: 80upx;
+	height: 72upx;
 }
 
 .font-search {
 	/* border: 2px solid red; */
-	width: 60upx;
+	/* width: 80rpx; */
 	padding: 10upx;
 	color: #72c69c;
 	font-weight: bold;
