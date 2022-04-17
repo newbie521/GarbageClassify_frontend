@@ -4,7 +4,7 @@
 			<form @submit="formSubmit" @reset="formReset" class="form-form">
 				<view class="input-view">
 					<view @click="takePhoto" class="input-view-item input-view-camera">
-						<image class="search-img" :src="getImage('icos/camera.png')"></image>
+						<image class="search-img" :src="require('../../static/icos/mycamera.png')"></image>
 					</view>
 <!-- 					<view @click="readyRecord" class="input-view-item input-view-speech">
 						<image class="search-img" :src="getImage('icos/record.png')"></image>

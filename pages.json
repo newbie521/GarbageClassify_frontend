@@ -129,18 +129,6 @@
 				"iconPath": "static/tabBar/more.png",
 				"selectedIconPath": "static/tabBar/moreSelected.png"
 			}
-			// ,
-			// {
-			// 	"pagePath": "pages/more/more",
-			// 	"text": "更多",
-			// 	"iconPath": "static/tabBar/more.png",
-			// 	"selectedIconPath": "static/tabBar/moreSelected.png"
-			// }
-			// ,
-			// {
-			// 	"pagePath": "pages/search/search",
-			// 	"text": "搜索"
-			// }
 		]
 	},
 	"lazyCodeLoading":"requiredComponents"

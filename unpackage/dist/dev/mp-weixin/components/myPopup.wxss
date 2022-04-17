@@ -66,9 +66,10 @@
 	font-size: 40rpx;
 	height: 80rpx;
 	line-height: 80rpx;
+	margin-bottom: 20rpx;
 }
 .i-know {
-	background-color: #72c69c;
+	background-color: #2B85E4;
 	color: #fff;
 }
 .show-img {

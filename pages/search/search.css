@@ -218,7 +218,7 @@ view {
 	align-items: center;
 	margin: 20upx 20upx;
 	/* height: 80upx; */
-	border: 1px solid #72c69c;
+	border: 1px solid #224ec0;
 	border-radius: 50upx;
 	box-shadow: 10upx 10upx 20upx #E0E0E0;
 
@@ -253,7 +253,7 @@ view {
 	/* border: 2px solid red; */
 	/* width: 80rpx; */
 	padding: 10upx;
-	color: #72c69c;
+	color: #224ec0;
 	font-weight: bold;
 }
 

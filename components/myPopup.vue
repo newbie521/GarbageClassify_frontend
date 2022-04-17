@@ -147,10 +147,11 @@
 		font-size: 40upx;
 		height: 80upx;
 		line-height: 80upx;
+		margin-bottom: 20upx;
 	}
 
 	.i-know {
-		background-color: #72c69c;
+		background-color: #2B85E4;
 		color: #fff;
 	}
 

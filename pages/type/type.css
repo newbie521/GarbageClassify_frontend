@@ -17,12 +17,13 @@
 
 .nav-left {
 	width: 30%;
+	height: 90vh;
 	/* border: 2upx solid red; */
 	/* background-color: #ddd; */
 }
 
 .nav-left-item {
-	height: 120upx;
+	height: 25vh;
 	/* border-right: solid 1px #E0E0E0; */
 	/* border-bottom: solid 1px #E0E0E0; */
 	font-size: 32upx;

@@ -29,10 +29,10 @@
 				</swiper-item>
 			</swiper>
 		</view> -->
-		
+
 		<view v-if="true">
-			<swiper class="imageContainer" :indicator-dots="true" :autoplay="true" :circular="true"
-			interval="3000" duration="1000"  previous-margin="20rpx" next-margin="20rpx">
+			<swiper class="imageContainer" :indicator-dots="true" :autoplay="true" :circular="true" interval="3000"
+				duration="1000" previous-margin="20rpx" next-margin="20rpx">
 				<swiper-item class="turnItem" v-for="(item,index) in swiper" :key="index">
 					<view @click="navigateTo(item.skipUrl)" class="swiper-item" style="background-color: antiquewhite;">
 						<image class="itemImg" :src="item.imageUrl"></image>
@@ -43,22 +43,22 @@
 
 		<!-- <view>
 			<swiper :indicator-dots="true" :autoplay="true" :circular="true"> -->
-				<!-- <swiper-item class="swiper-flex">
+		<!-- <swiper-item class="swiper-flex">
 					<view class="swiper-item swiper-img" style="background-color: antiquewhite;">
 						<ad unit-id="adunit-060249bea9401e5c"></ad>
 					</view>
 				</swiper-item> -->
-				<!-- <swiper-item class="swiper-flex">
+		<!-- <swiper-item class="swiper-flex">
 					<view class="swiper-item" style="background-color: antiquewhite;">
 						<image class="swiper-img" src="https://pic.yupoo.com/felixluo/0681f6d5/67bb9dbc.png"></image>
 					</view>
 				</swiper-item> -->
-				<!-- <swiper-item class="swiper-flex">
+		<!-- <swiper-item class="swiper-flex">
 					<view class="swiper-item" >
 						<ad unit-id="adunit-060249bea9401e5c"></ad>
 					</view>
 				</swiper-item> -->
-<!-- 				<swiper-item class="swiper-flex">
+		<!-- 				<swiper-item class="swiper-flex">
 					<view  >
 						<ad unit-id="adunit-060249bea9401e5c"></ad>
 					</view>
@@ -72,45 +72,63 @@
 			<form @submit="formSubmit" @reset="formReset" class="form-form">
 				<view class="input-view">
 					<view @click="takePhoto2" class="input-view-item input-view-camera">
-						<image class="search-img" :src="getImage('icos/camera.png')"></image>
+						<image class="search-img" :src="require('../../static/icos/mycamera.png')"></image>
 					</view>
-<!-- 					<view @click="readyRecord2" class="input-view-item input-view-speech">
+					<!-- 					<view @click="readyRecord2" class="input-view-item input-view-speech">
 						<image class="search-img" :src="getImage('icos/record.png')"></image>
 					</view> -->
 					<view class="input-view-item input-view-search">
-						<input confirm-type="search" @confirm="searchKeyword" @search="searchKeyword" v-model="keyword" id="inputid"
-						 class="input-search" name="input" placeholder="输入搜索关键词" />
+						<input confirm-type="search" @confirm="searchKeyword" @search="searchKeyword" v-model="keyword"
+							id="inputid" class="input-search" name="input" placeholder="输入搜索关键词" />
 					</view>
 					<view @tap="searchKeyword" class=" font-search">查询</view>
 				</view>
 			</form>
-		</view>
-		<view v-show="true">
-			<view class="">
-				<uni-notice-bar scrollable="true" show-icon="true" color="#999" backgroundColor="rgb(242,242,242)" text="提示:本查询系统就供参考,具体分类要求以属地专业管理部门为准">
-				</uni-notice-bar>
-			</view>
 		</view>
 		<view class="">
 			<view class="simpleTips">
 				{{randomTip}}
 			</view>
 		</view>
+
+		<view class="card">
+			<view class="tabs_list">
+				<view v-for="item in tabs_list" :key="item.name" class="tabs_card" @click="switchTabTo(item.path)">
+					<image mode="aspectFit" style="float: left;margin-top: 25rpx;height: 150rpx;width: 80%;"
+						:src="item.picture"></image>
+					<span class="text">{{item.name}}</span>
+				</view>
+			</view>
+		</view>
+		
+		<view class="card">
+			<view class="title">你的分类助手</view>
+		</view>
+		<view v-show="false">
+			<view class="">
+				<uni-notice-bar scrollable="true" show-icon="true" color="#999" backgroundColor="rgb(242,242,242)"
+					text="提示:本查询系统就供参考,具体分类要求以属地专业管理部门为准">
+				</uni-notice-bar>
+			</view>
+		</view>
+
+
+
 		<view class="main-show-classify">
 			<view class="main-classify">
-				<view @click="switchTabToClassify(1)">
-					<image class="main-img" :src="getImage('icos/ico-1.png')"></image>
+				<view class="border" @click="switchTabToClassify(1)">
+					<image style="weight: 270upx; " class="main-img" :src="getImage('icos/ico-1.png')"></image>
 				</view>
-				<view @click="switchTabToClassify(2)">
-					<image class="main-img" :src="getImage('icos/ico-2.png')"></image>
+				<view class="border" @click="switchTabToClassify(2)">
+					<image style="height: 270upx;margin-top: 50upx; " class="main-img" :src="getImage('icos/ico-2.png')"></image>
 				</view>
 			</view>
 			<view class="main-classify">
-				<view @click="switchTabToClassify(3)">
+				<view class="border" @click="switchTabToClassify(3)">
 					<image class="main-img" :src="getImage('icos/ico-3.png')"></image>
 				</view>
-				<view @click="switchTabToClassify(4)">
-					<image class="main-img" :src="getImage('icos/ico-4.png')"></image>
+				<view class="border" @click="switchTabToClassify(4)">
+					<image style="width: 270upx;height: 270upx;margin: 25upx; " class="main-img" :src="getImage('icos/ico-4.png')"></image>
 				</view>
 			</view>
 		</view>
@@ -156,6 +174,26 @@
 		},
 		data() {
 			return {
+				tabs_list: [{
+						name: '智能识别',
+						picture: require('../../static/img/icon1.png'),
+						path: '/pages/search/search'
+					}, {
+						name: '分类查询',
+						picture: require('../../static/img/icon2.png'),
+						path: '/pages/type/type'
+					},
+					{
+						name: '分类挑战',
+						picture: require('../../static/img/icon3.png'),
+						path: '/pages/challenge/challenge'
+					},
+					{
+						name: '识别记录',
+						picture: require('../../static/img/icon4.png'),
+						path: '/pages/mine/photoList/photoList'
+					}
+				],
 				title: '这是我的小程序，开始了',
 				defaultKeyword: "111",
 				keyword: "干电池",
@@ -166,7 +204,7 @@
 				timeoutTiming: false,
 				maxTime: 5000,
 				frame: 50,
-				imgUrl:"",
+				imgUrl: "",
 
 				swiper: [], // 幻灯片 swiper 数据
 				isShowKeywordList: false,
@@ -213,14 +251,14 @@
 		},
 		onLoad() {
 			let me = this;
-			
+
 			console.log("typeid:" + getApp().globalData.typeid) // 'test'
 			me.imgUrl = this.imageUrl;
 			console.log(this.imgUrl);
 
 			//  获取幻灯片 swiper start
 			uni.request({
-				url: me.serverUrl + '/slideShow', //仅为示例，并非真实接口地址。
+				url: me.serverUrl + '/slideShow', 
 				success: (res) => {
 					console.log(res)
 					console.log(res.data.data);
@@ -255,7 +293,8 @@
 					context.beginPath();
 					context.setStrokeStyle("#1296db");
 					context.setLineWidth(3);
-					context.arc(0, 0, 0, -0.5 * Math.PI, (angle += 2 / (me.maxTime / me.frame)) * Math.PI, false);
+					context.arc(0, 0, 0, -0.5 * Math.PI, (angle += 2 / (me.maxTime / me.frame)) * Math.PI,
+						false);
 					context.stroke();
 					context.draw();
 				}, 1);
@@ -287,7 +326,7 @@
 			})
 		},
 		methods: {
-			getImage(img){
+			getImage(img) {
 				return this.imageUrl + img;
 			},
 			randOne() {
@@ -310,15 +349,15 @@
 			// 幻灯片 的点击跳转事件 end
 			// 是搜索框中的搜索按钮
 			searchKeyword() {
-				if(getApp().globalData.islogin == false){
+				if (getApp().globalData.islogin == false) {
 					this.noTitlemodalTap();
-					return ;
+					return;
 				}
-				
+
 				let me = this;
 				if (!me.keyword) return;
 				uni.request({
-					url: this.serverUrl + "/qb/uniname/"+ getApp().globalData.userid + "/" + this.keyword , 
+					url: this.serverUrl + "/qb/uniname/" + getApp().globalData.userid + "/" + this.keyword,
 					success: (res) => {
 						console.log(res);
 						// me.keywordList = me.drawCorrelativeKeyword(res.data.data, me.keyword);
@@ -370,7 +409,8 @@
 					context.beginPath();
 					context.setStrokeStyle("#1296db");
 					context.setLineWidth(3);
-					context.arc(75, 75, 50, -0.5 * Math.PI, (angle += 2 / (me.maxTime / me.frame)) * Math.PI, false);
+					context.arc(75, 75, 50, -0.5 * Math.PI, (angle += 2 / (me.maxTime / me.frame)) * Math.PI,
+						false);
 					context.stroke();
 					context.draw();
 				}, me.frame);
@@ -405,7 +445,22 @@
 					url: '/pages/type/type',
 				});
 			},
-			
+
+			switchTabTo(myUrl) {
+				if (getApp().globalData.islogin == false) {
+					this.noTitlemodalTap();
+					return;
+				}
+				if (myUrl == "/pages/type/type" || myUrl == "/pages/challenge/challenge") {
+					uni.switchTab({
+						url: myUrl,
+					});
+				}
+				uni.navigateTo({
+					url: myUrl,
+				});
+			},
+
 			noTitlemodalTap() {
 				uni.showModal({
 					title: "请先登录",
@@ -423,10 +478,10 @@
 							console.log('用户点击取消');
 						}
 					},
-					
+
 				})
 			},
-			
+
 			gotoSearch() {
 				uni.navigateTo({
 					url: '/pages/search/search',
@@ -434,7 +489,7 @@
 			},
 			// 搜索框的语音调用
 			takePhoto2() {
-				if(getApp().globalData.islogin == false){
+				if (getApp().globalData.islogin == false) {
 					this.noTitlemodalTap();
 					return;
 				}
